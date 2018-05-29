@@ -77,6 +77,68 @@ app.post("/proxy/:url?",(req,res)=>{
     }
   })
 })
+
+const Web3 = require('web3')
+let web3 = new Web3()
+
+const PRICE_ABI=[
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "priceToSet",
+				"type": "uint256"
+			}
+		],
+		"name": "setPrice",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getLastHistory",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getLastPrice",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+const KOTO_CONTRACT="0x34bf7978CB62D4a458b4416a7136Af6Cf9C2DD21"
+web3.setProvider(new web3.providers.HttpProvider(["https://rinkeby.infura.io/iRUhBHOZ7VZdrEq1yQZd"]))
+app.get("/priceEtherProxy/koto",(req,res)=>{
+  (new web3.eth.Contract(PRICE_ABI ,KOTO_CONTRACT))
+    .methods.getLastPrice()
+    .call().then(result=>{
+      res.send({success:true,result})
+    })
+})
+
 const tokens=[
   {
     description:"スキャムガールズ",
