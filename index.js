@@ -130,7 +130,7 @@ const PRICE_ABI=[
 	}
 ]
 const KOTO_CONTRACT="0x34bf7978CB62D4a458b4416a7136Af6Cf9C2DD21"
-web3.setProvider(new web3.providers.HttpProvider(["https://rinkeby.infura.io/iRUhBHOZ7VZdrEq1yQZd"]))
+web3.setProvider(new web3.providers.HttpProvider("https://rinkeby.infura.io/iRUhBHOZ7VZdrEq1yQZd"))
 app.get("/priceEtherProxy/koto",(req,res)=>{
   (new web3.eth.Contract(PRICE_ABI ,KOTO_CONTRACT))
     .methods.getLastPrice()
