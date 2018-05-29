@@ -135,7 +135,7 @@ app.get("/priceEtherProxy/koto",(req,res)=>{
   (new web3.eth.Contract(PRICE_ABI ,KOTO_CONTRACT))
     .methods.getLastPrice()
     .call().then(result=>{
-      res.send({success:true,result})
+      res.send({success:true,result:result/1e8})
     })
 })
 
