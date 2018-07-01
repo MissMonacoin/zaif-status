@@ -129,8 +129,8 @@ const PRICE_ABI=[
 		"type": "function"
 	}
 ]
-const KOTO_CONTRACT="0x34bf7978CB62D4a458b4416a7136Af6Cf9C2DD21"
-web3.setProvider(new web3.providers.HttpProvider("https://rinkeby.infura.io/iRUhBHOZ7VZdrEq1yQZd"))
+const KOTO_CONTRACT="0x63d50ed6296E414aC0b45E83cD8782c73180Ff72"
+web3.setProvider(new web3.providers.HttpProvider("https://www.nekonium.site:8293"))
 app.get("/priceEtherProxy/koto",(req,res)=>{
   (new web3.eth.Contract(PRICE_ABI ,KOTO_CONTRACT))
     .methods.getLastPrice()
