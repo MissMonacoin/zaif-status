@@ -39,6 +39,9 @@ function isValidDomain(addr){
 }
 
 app.get("/proxy/:url?",(req,res)=>{
+  if(!isValidDomain(req.query.u||req.params.url)){
+    return res.status(510).send({success:false,reason:"not allowed"})
+  }
   axios.get(req.query.u||req.params.url).then(r=>{
     //console.log(r)
     res.status(r.status).set(r.headers).send(r.data)
